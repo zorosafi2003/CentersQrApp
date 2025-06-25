@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+	x:Class="CentersBarCode.AppShell"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:CentersBarCode"
+	xmlns:views="clr-namespace:CentersBarCode.Views"
+	FlyoutIcon="dotnet_bot.png">
+
+    <FlyoutItem Title="Main" Icon="dotnet_bot.png" Route="MainPage">
+        <ShellContent Title="Main" ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Records" Icon="dotnet_bot.png" Route="RecordsPage">
+        <ShellContent Title="Records" ContentTemplate="{DataTemplate views:RecordsPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Login" Icon="dotnet_bot.png" Route="LoginPage">
+        <ShellContent Title="Login" ContentTemplate="{DataTemplate views:LoginPage}" />
+    </FlyoutItem>
+</Shell>

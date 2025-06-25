@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CentersBarCode.Views.LoginPage">
+    <Grid>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+            <Image Source="dotnet_bot.png" HeightRequest="150" HorizontalOptions="Center" Margin="0,0,0,30"/>
+            <Label Text="Welcome" FontSize="32" HorizontalOptions="Center" />
+            <Label Text="Please sign in to continue" FontSize="16" HorizontalOptions="Center" Margin="0,0,0,30"/>
+            <Button Text="Sign in with Google" x:Name="GoogleLoginButton" Clicked="OnGoogleLoginClicked" 
+                    BackgroundColor="#4285F4" TextColor="White" Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+        
+
+    </Grid>
+</ContentPage>

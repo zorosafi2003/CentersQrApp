@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.yourcompany.centersbarcode">
+	<application 
+		android:allowBackup="true" 
+		android:icon="@mipmap/appicon" 
+		android:roundIcon="@mipmap/appicon_round" 
+		android:supportsRtl="true"
+		android:usesCleartextTraffic="true">
+		
+		<!-- Add metadata for Google Play Services -->
+		<meta-data
+			android:name="com.google.android.gms.version"
+			android:value="@integer/google_play_services_version" />
+			
+		<!-- Google Sign-In Activities -->
+		<activity android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+				  android:exported="false"
+				  android:excludeFromRecents="true"
+				  android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+				  
+		<!-- Google Play Services activities -->
+        <activity android:name="com.google.android.gms.common.api.GoogleApiActivity"
+                  android:exported="false"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+	</application>
+	
+	<!-- Network permissions -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	
+	<!-- Google Sign-In permissions -->
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	
+	<!-- Camera permissions for QR code scanning -->
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-feature android:name="android.hardware.camera" android:required="true" />
+	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+	
+	<!-- Flashlight permission (optional) -->
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+</manifest>
