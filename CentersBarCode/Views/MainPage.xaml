@@ -1,140 +1,167 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:CentersBarCode.ViewModels"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:camera="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
-             x:Class="CentersBarCode.Views.MainPage"
-             x:DataType="vm:MainViewModel"
-             Title="Centers Barcode Scanner">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CentersBarCode.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:CentersBarCode.ViewModels"
+    xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+    Title="Centers Barcode Scanner"
+    x:DataType="vm:MainViewModel">
 
     <Grid RowDefinitions="Auto,*,Auto">
-        <!-- Main Content -->
-        <VerticalStackLayout Grid.Row="0" Padding="20" Spacing="20">
-            <Label Text="Select a Center" FontSize="18" FontAttributes="Bold" />
-            
-            <!-- Centers Dropdown -->
-            <Picker Title="Select Center" 
-                    ItemsSource="{Binding Centers}" 
-                    SelectedItem="{Binding SelectedCenter}" 
-                    HorizontalOptions="FillAndExpand" />
-            
-            <!-- Scan Button -->
-            <Button Text="Scan QR Code" 
-                    Command="{Binding OpenQrScannerCommand}" 
-                    IsEnabled="{Binding CanScan}"
-                    HorizontalOptions="FillAndExpand" />
+        <!--  Main Content  -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="20"
+            Spacing="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="Select a Center" />
+
+            <!--  Centers Dropdown  -->
+            <Picker
+                Title="Select Center"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding Centers}"
+                SelectedItem="{Binding SelectedCenter}" />
+
+            <!--  Scan Button  -->
+            <Button
+                Command="{Binding OpenQrScannerCommand}"
+                HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding CanScan}"
+                Text="Scan QR Code" />
         </VerticalStackLayout>
-        
-        <!-- QR Scanner Overlay -->
-        <Grid Grid.Row="0" Grid.RowSpan="3" 
-              IsVisible="{Binding IsQrScannerVisible}" 
-              BackgroundColor="Black">
-            
-            <!-- Camera.MAUI CameraView -->
-            <camera:CameraView x:Name="cameraView"
-                              IsVisible="{Binding IsCameraInitialized}"
-                              HorizontalOptions="FillAndExpand" 
-                              VerticalOptions="FillAndExpand"
-                              BarCodeDetectionEnabled="True"
-                              BarcodeDetected="CameraView_BarCodeDetected" />
-            
-            <!-- Scan Frame for visual indication -->
+
+        <!--  QR Scanner Overlay  -->
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            BackgroundColor="Black"
+            IsVisible="{Binding IsQrScannerVisible}">
+
+            <zxing:CameraBarcodeReaderView
+                x:Name="cameraView"
+                BarcodesDetected="CameraView_BarCodeDetected"
+                CameraLocation="Rear"
+                HeightRequest="300"
+                HorizontalOptions="Fill"
+                IsDetecting="True"
+                VerticalOptions="Fill"
+                WidthRequest="300" />
+
+            <!--  Scan Frame for visual indication  -->
             <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                <Frame BorderColor="White" 
-                       CornerRadius="10" 
-                       WidthRequest="250"
-                       HeightRequest="250"
-                       BackgroundColor="Transparent"
-                       Padding="2"
-                       HasShadow="False">
-                </Frame>
-                
-                <Label Text="Position QR code inside frame" 
-                       TextColor="White"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Start"
-                       Margin="0,-30,0,0"
-                       FontSize="14" />
+                <Frame
+                    Padding="2"
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    HeightRequest="250"
+                    WidthRequest="250" />
+
+                <Label
+                    Margin="0,-30,0,0"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="Position QR code inside frame"
+                    TextColor="White"
+                    VerticalOptions="Start" />
             </Grid>
 
-            <!-- Controls Grid -->
-            <Grid RowDefinitions="Auto,*,Auto" Padding="20">
-                <!-- Top controls -->
-                <HorizontalStackLayout Grid.Row="0" 
-                                      HorizontalOptions="End" 
-                                      Spacing="10">
-                    <Button Text="💡" 
-                            BackgroundColor="Transparent"
-                            BorderColor="Transparent"
-                            Clicked="ToggleFlash_Clicked"
-                            WidthRequest="40"
-                            HeightRequest="40"
-                            FontSize="24" />
+            <!--  Controls Grid  -->
+            <Grid Padding="20" RowDefinitions="Auto,*,Auto">
+                <!--  Top controls  -->
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    Spacing="10">
+                    <Button
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Clicked="ToggleFlash_Clicked"
+                        FontSize="24"
+                        HeightRequest="40"
+                        Text="💡"
+                        WidthRequest="40" />
                 </HorizontalStackLayout>
-                
-                <!-- Middle section - empty to allow camera view -->
-                
-                <!-- Bottom controls -->
-                <VerticalStackLayout Grid.Row="2" 
-                                   Spacing="15"
-                                   HorizontalOptions="Center">
-                    <!-- Manual capture button (in case auto-detection doesn't work) -->
-                    <Button Text="Capture QR Code" 
-                            Clicked="CaptureQrCode_Clicked"
-                            HorizontalOptions="Center"
-                            BackgroundColor="Green"
-                            TextColor="White" />
-                    
-                    <Button Text="Close Scanner" 
-                            Command="{Binding CloseQrScannerCommand}" 
-                            HorizontalOptions="Center" />
+
+                <!--  Middle section - empty to allow camera view  -->
+
+                <!--  Bottom controls  -->
+                <VerticalStackLayout
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Spacing="15">
+                    <!--  Manual capture button (in case auto-detection doesn't work)  -->
+                    <Button
+                        BackgroundColor="Green"
+                        Clicked="CaptureQrCode_Clicked"
+                        HorizontalOptions="Center"
+                        Text="Capture QR Code"
+                        TextColor="White" />
+
+                    <Button
+                        Command="{Binding CloseQrScannerCommand}"
+                        HorizontalOptions="Center"
+                        Text="Close Scanner" />
                 </VerticalStackLayout>
             </Grid>
         </Grid>
-        
-        <!-- QR Code Result Popup -->
-        <Grid Grid.Row="0" Grid.RowSpan="3" 
-              IsVisible="{Binding IsPopupVisible}" 
-              BackgroundColor="#80000000"
-              HorizontalOptions="FillAndExpand" 
-              VerticalOptions="FillAndExpand">
-            
-            <Frame CornerRadius="10" 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center"
-                   WidthRequest="300" 
-                   HeightRequest="200"
-                   Padding="20">
-                
+
+        <!--  QR Code Result Popup  -->
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            BackgroundColor="#80000000"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsPopupVisible}"
+            VerticalOptions="FillAndExpand">
+
+            <Frame
+                Padding="20"
+                CornerRadius="10"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="300">
+
                 <Grid RowDefinitions="Auto,*,Auto">
-                    <Label Text="Scanned QR Code" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           Grid.Row="0" 
-                           HorizontalOptions="Center" />
-                    
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Scanned QR Code" />
+
                     <ScrollView Grid.Row="1" Margin="0,10">
-                        <Label Text="{Binding ScannedQrText}" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center"
-                               LineBreakMode="WordWrap"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center" />
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding ScannedQrText}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
                     </ScrollView>
-                    
-                    <HorizontalStackLayout Grid.Row="2" 
-                                         HorizontalOptions="Center" 
-                                         Spacing="20">
-                        <Button Text="Save" 
-                                Command="{Binding SaveQrCodeCommand}" 
-                                BackgroundColor="Green"
-                                TextColor="White" />
-                        
-                        <Button Text="Cancel" 
-                                Command="{Binding CancelQrCodeCommand}" 
-                                BackgroundColor="Gray"
-                                TextColor="White" />
+
+                    <HorizontalStackLayout
+                        Grid.Row="2"
+                        HorizontalOptions="Center"
+                        Spacing="20">
+                        <Button
+                            BackgroundColor="Green"
+                            Command="{Binding SaveQrCodeCommand}"
+                            Text="Save"
+                            TextColor="White" />
+
+                        <Button
+                            BackgroundColor="Gray"
+                            Command="{Binding CancelQrCodeCommand}"
+                            Text="Cancel"
+                            TextColor="White" />
                     </HorizontalStackLayout>
                 </Grid>
             </Frame>
