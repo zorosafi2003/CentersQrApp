@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.yourcompany.centersbarcode">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.companyname.CentersBar">
 	<application 
 		android:allowBackup="true" 
 		android:icon="@mipmap/appicon" 
@@ -36,6 +36,9 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-feature android:name="android.hardware.camera" android:required="true" />
 	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+	<uses-permission android:name="android.permission.MANAGE_DEVICE_POLICY_CAMERA" />
+	<uses-permission android:name="android.permission.MANAGE_DEVICE_POLICY_CAMERA_TOGGLE" />
+	<uses-permission android:name="android.permission.VIBRATE" />
 	
 	<!-- Flashlight permission (optional) -->
 	<uses-permission android:name="android.permission.FLASHLIGHT" />
