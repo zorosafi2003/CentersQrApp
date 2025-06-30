@@ -65,7 +65,7 @@ public partial class LoginPage : ContentPage
             var authResult = await _authService.SignInWithGoogleAsync();
             
             Debug.WriteLine($"Authentication result: Success={authResult.IsSuccessful}, Email={authResult.UserEmail ?? "null"}");
-            await Shell.Current.GoToAsync("//MainPage");
+           await Shell.Current.GoToAsync("//MainPage");
 
             //if (authResult.IsSuccessful)
             //{
