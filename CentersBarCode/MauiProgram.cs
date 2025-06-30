@@ -1,8 +1,7 @@
-﻿using CentersBarCode.Services;
+using CentersBarCode.Services;
 using CentersBarCode.ViewModels;
 using Microsoft.Extensions.Logging;
-using Camera.MAUI;
-using Camera.MAUI.ZXingHelper;
+using ZXing.Net.Maui.Controls;
 
 namespace CentersBarCode;
 
@@ -13,13 +12,12 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseBarcodeReader()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
-			 .UseMauiCameraView(); // Register Camera.MAUI
-
+			});
 		 // Configure logging
         builder.Services.AddLogging(logging =>
         {
