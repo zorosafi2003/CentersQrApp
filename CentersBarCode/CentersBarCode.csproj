@@ -59,24 +59,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!-- Update Camera.MAUI to the latest version -->
-		<PackageReference Include="Camera.MAUI" Version="1.5.1" />
-		<PackageReference Include="Camera.MAUI.ZXing" Version="1.0.0" />
-		<PackageReference Include="CommunityToolkit.MVVM" Version="8.4.0" />
-		<PackageReference Include="Microsoft.Identity.Client" Version="4.73.0" />
-		<PackageReference Include="Microsoft.Identity.Client.Broker" Version="4.73.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="UraniumUI" Version="2.11.0" />
-		<PackageReference Include="Xamarin.Build.Download" Version="0.11.4" />
-		
-		<!-- Keep ZXing packages for additional barcode functionality -->
-		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
-		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
-	</ItemGroup>
+	<!-- Update Camera.MAUI to the latest version -->
+	<PackageReference Include="CommunityToolkit.MVVM" Version="8.4.0" />
+	<PackageReference Include="Microsoft.Identity.Client" Version="4.73.0" />
+	<PackageReference Include="Microsoft.Identity.Client.Broker" Version="4.73.0" />
+	<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+	<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+	<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+	<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+	<PackageReference Include="UraniumUI" Version="2.11.0" />
+	<PackageReference Include="Xamarin.Build.Download" Version="0.11.4" />
+	
+	<!-- Keep ZXing packages for additional barcode functionality -->
+	<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
