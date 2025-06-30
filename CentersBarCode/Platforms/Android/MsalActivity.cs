@@ -9,7 +9,7 @@ namespace CentersBarCode.Platforms.Android;
 [IntentFilter(new[] { Intent.ActionView },
     Categories = new[] { Intent.CategoryBrowsable, Intent.CategoryDefault },
     DataHost = "auth",
-    DataScheme = "msal613797922873-vmu2lko85b1mkv0lno9is9d557ggog4o.apps.googleusercontent.com")]
+    DataScheme = "219293182439-0erlvl0k2cba8afuumgi76t70sm6g9tc.apps.googleusercontent.com")]
 public class MsalActivity : BrowserTabActivity
 {
 }
